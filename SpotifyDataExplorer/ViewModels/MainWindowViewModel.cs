@@ -1,3 +1,13 @@
-﻿namespace SpotifyDataExplorer.ViewModels;
+﻿using SpotifyDataExplorer.ViewModels.Pages;
 
-public class MainWindowViewModel : ViewModelBase { }
+namespace SpotifyDataExplorer.ViewModels;
+
+public class MainWindowViewModel : AbstractViewModel
+{
+    public StartViewModel StartViewModel { get; }
+    
+    public MainWindowViewModel(StartViewModel startViewModel)
+    {
+        StartViewModel = startViewModel;
+    }
+}

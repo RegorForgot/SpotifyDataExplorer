@@ -23,7 +23,6 @@ public record SpotifyTrack
         Incognito = spotifyTrackDto.Incognito;
     }
 
-
     public DateTime Timestamp { get; init; }
     public TimeSpan TimePlayed { get; init; }
     public string TrackName { get; init; }

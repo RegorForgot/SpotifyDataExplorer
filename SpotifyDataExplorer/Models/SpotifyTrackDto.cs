@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace SpotifyDataExplorer.Models;
 
