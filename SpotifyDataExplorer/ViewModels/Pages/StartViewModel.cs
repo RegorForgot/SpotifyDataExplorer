@@ -11,7 +11,7 @@ public class StartViewModel : AbstractPageViewModel
 {
     private readonly TracksDataStore _dataStore;
 
-    public ReactiveCommand<IReadOnlyList<IStorageFile>, Unit> GetJsonFilesCmd { get; init; }
+    public ReactiveCommand<IEnumerable<IStorageFile>, Unit> GetJsonFilesCmd { get; }
     public ReactiveCommand<Unit, Unit> GetSqliteFileCmd { get; init; }
 
     public StartViewModel(
@@ -19,12 +19,17 @@ public class StartViewModel : AbstractPageViewModel
     {
         _dataStore = dataStore;
 
-        GetJsonFilesCmd = ReactiveCommand.CreateFromTask<IReadOnlyList<IStorageFile>>(AddJsonTracksToStore);
+        GetJsonFilesCmd = ReactiveCommand.CreateFromTask<IEnumerable<IStorageFile>>(AddJsonTracksToStore);
     }
 
-    private async Task AddJsonTracksToStore(IReadOnlyList<IStorageFile> files)
+    private async Task AddJsonTracksToStore(IEnumerable<IStorageFile> files)
     {
         var dtos = await _dataStore.GetDtosFromJson(files);
         await _dataStore.PopulateSpotifyTrackListing(dtos);
+    }
+
+    private async Task AddSqliteTracksToStore(IStorageFile file)
+    {
+        file.
     }
 }

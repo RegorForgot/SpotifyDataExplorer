@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
+using LiteDB;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace SpotifyDataExplorer.Stores;
 
@@ -26,7 +28,15 @@ public class TracksDataStore : ReactiveObject
         return Task.CompletedTask;
     }
 
-    public async Task<IEnumerable<SpotifyTrackDto>?> GetDtosFromJson(IReadOnlyList<IStorageFile> jsonFiles)
+    public async Task PopulateSpotifyTrackListing(string liteDbPath)
+    {
+        LiteDatabase db = new LiteDatabase(liteDbPath);
+        var collection = db.GetCollection<SpotifyTrack>();
+        collection.InsertBulk(_spotifyTracks);
+        db.FileStorage.FindAll()
+    }
+
+    public async Task<IEnumerable<SpotifyTrackDto>?> GetDtosFromJson(IEnumerable<IStorageFile> jsonFiles)
     {
         JsonSerializer serializer = new JsonSerializer();
         var dtos = new List<SpotifyTrackDto>();
