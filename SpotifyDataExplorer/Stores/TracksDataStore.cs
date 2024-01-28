@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
-using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace SpotifyDataExplorer.Stores;
 
@@ -28,8 +27,7 @@ public class TracksDataStore : ReactiveObject
     }
 
     public async Task<IEnumerable<SpotifyTrackDto>?> GetDtosFromJson(IEnumerable<IStorageFile> jsonFiles)
-    { 
-        JsonSerializer serializer = new JsonSerializer();
+    {
         var dtos = new List<SpotifyTrackDto>();
 
         foreach (IStorageFile storageFile in jsonFiles)
@@ -39,10 +37,10 @@ public class TracksDataStore : ReactiveObject
             try
             {
                 using StreamReader sr = new StreamReader(await storageFile.OpenReadAsync());
-                await using JsonTextReader jsonTextReader = new JsonTextReader(sr);
-                fileDtos = serializer.Deserialize<IEnumerable<SpotifyTrackDto>>(jsonTextReader);
+                fileDtos = await JsonSerializer.DeserializeAsync<IEnumerable<SpotifyTrackDto>>(await storageFile.OpenReadAsync());
+
             }
-            catch (JsonSerializationException ex)
+            catch (Exception ex)
             {
                 fileDtos = Array.Empty<SpotifyTrackDto>();
                 Console.WriteLine(ex.Message);

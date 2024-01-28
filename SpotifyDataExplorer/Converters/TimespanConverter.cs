@@ -11,7 +11,7 @@ public class TimespanConverter : IValueConverter
     {
         if (value is TimeSpan timespan)
         {
-            return $@"{timespan:hh\:mm\:ss}";
+            return timespan.Hours == 0 ? $@"{timespan:m\:ss}" : $@"{timespan:hh\:mm\:ss}";
         }
 
         return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);

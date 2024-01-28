@@ -1,16 +1,26 @@
 ﻿<UserControl
   x:Class="SpotifyDataExplorer.Views.Pages.StartView"
+  x:DataType="pages:StartPageViewModel"
   xmlns="https://github.com/avaloniaui"
   xmlns:pages="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Design.DataContext>
-    <pages:StartViewModel />
+    <pages:StartPageViewModel />
   </Design.DataContext>
 
-  <Button
-    Click="JsonImportOnClick"
-    Content="Import from JSON files"
-    Name="JsonImport" />
+  <Grid RowDefinitions="*, Auto">
+    <Button
+      Command="{Binding GetJsonFilesCmd}"
+      CommandParameter="{Binding $parent[UserControl]}"
+      Content="Import from JSON files"
+      Name="JsonImport" />
+    <ProgressBar
+      Grid.Row="1"
+      HorizontalAlignment="Center"
+      IsIndeterminate="True"
+      IsVisible="{Binding Loading}"
+      Margin="5" />
+  </Grid>
 
 </UserControl>

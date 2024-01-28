@@ -22,6 +22,7 @@
       Grid.Row="0"
       Height="50"
       HorizontalAlignment="Left"
+      IsEnabled="{Binding Context.CanGoBack}"
       VerticalAlignment="Center"
       VerticalContentAlignment="Center" />
 

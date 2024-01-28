@@ -13,9 +13,7 @@ public record SpotifyTrack
         TrackName = spotifyTrackDto.TrackName;
         ArtistName = spotifyTrackDto.ArtistName;
         AlbumName = spotifyTrackDto.AlbumName;
-
-        string uriIdentifier = spotifyTrackDto.SpotifyURI.Split(":")[2];
-        TrackURL = $"https://open.spotify.com/track/{uriIdentifier}";
+        TrackURI = spotifyTrackDto.SpotifyURI;
 
         StartReason = spotifyTrackDto.StartReason.ConvertToPlayReason();
         EndReason = spotifyTrackDto.EndReason.ConvertToPlayReason();
@@ -28,7 +26,7 @@ public record SpotifyTrack
     public string TrackName { get; init; }
     public string ArtistName { get; init; }
     public string AlbumName { get; init; }
-    public string TrackURL { get; init; }
+    public string TrackURI { get; init; }
     public PlayReason StartReason { get; init; }
     public PlayReason EndReason { get; init; }
     public bool Incognito { get; init; }

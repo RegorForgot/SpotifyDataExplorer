@@ -19,7 +19,7 @@
 
   <ContentControl Content="{Binding UIContext.CurrentViewModel}">
     <ContentControl.DataTemplates>
-      <DataTemplate DataType="{x:Type pageVM:StartViewModel}">
+      <DataTemplate DataType="{x:Type pageVM:StartPageViewModel}">
         <pages:StartView DataContext="{Binding}" />
       </DataTemplate>
       <DataTemplate DataType="{x:Type pageVM:HistoryPageViewModel}">

@@ -9,6 +9,6 @@ public class MainWindowViewModel : AbstractViewModel
     public MainWindowViewModel(UIContext uiContext)
     {
         UIContext = uiContext;
-        UIContext.AddPage(new StartViewModel(UIContext));
+        UIContext.AddPage(new StartPageViewModel(UIContext));
     }
 }

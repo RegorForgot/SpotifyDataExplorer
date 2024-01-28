@@ -2,4 +2,7 @@
 
 namespace SpotifyDataExplorer.ViewModels;
 
-public abstract class AbstractViewModel : ReactiveObject { }
+public abstract class AbstractViewModel : ReactiveObject
+{
+    
+}

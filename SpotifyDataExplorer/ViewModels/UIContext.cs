@@ -7,20 +7,17 @@ namespace SpotifyDataExplorer.ViewModels;
 
 public class UIContext : ReactiveObject
 {
-    public AbstractPageViewModel CurrentViewModel => Pages.Last();
-    public bool CanGoBack => Pages.Count > 1;
+    private readonly List<AbstractPageViewModel> _pages = new List<AbstractPageViewModel>();
+    public AbstractPageViewModel CurrentViewModel => _pages.Last();
+    public bool CanGoBack => _pages.Count > 1;
 
-    public List<AbstractPageViewModel> Pages { get; set; } = new List<AbstractPageViewModel>();
-
-
-    public UIContext() { }
 
     public void AddPage(AbstractPageViewModel viewModel)
     {
-        Pages.Add(viewModel);
-        if (Pages.Count > 5)
+        _pages.Add(viewModel);
+        if (_pages.Count > 5)
         {
-            Pages.RemoveAt(0);
+            _pages.RemoveAt(0);
         }
         this.RaisePropertyChanged(nameof(CanGoBack));
         this.RaisePropertyChanged(nameof(CurrentViewModel));
@@ -32,7 +29,7 @@ public class UIContext : ReactiveObject
         {
             return;
         }
-        Pages.Remove(CurrentViewModel);
+        _pages.Remove(CurrentViewModel);
         this.RaisePropertyChanged(nameof(CanGoBack));
         this.RaisePropertyChanged(nameof(CurrentViewModel));
     }
