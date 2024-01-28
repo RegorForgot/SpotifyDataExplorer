@@ -1,3 +1,21 @@
-﻿namespace SpotifyDataExplorer.ViewModels.Pages;
+﻿using System.Reactive;
+using ReactiveUI;
 
-public abstract class AbstractPageViewModel : AbstractViewModel { }
+namespace SpotifyDataExplorer.ViewModels.Pages;
+
+public abstract class AbstractPageViewModel : AbstractViewModel
+{
+    protected readonly UIContext Context;
+    public ReactiveCommand<Unit, Unit> LastScreenCmd { get; }
+
+    protected AbstractPageViewModel(UIContext context)
+    {
+        Context = context;
+        LastScreenCmd = ReactiveCommand.Create(LastScreen);
+    }
+    
+    private void LastScreen()
+    {
+        Context.BackPage();
+    }
+}

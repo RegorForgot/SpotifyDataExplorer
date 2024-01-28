@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
-using LiteDB;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;

@@ -1,10 +1,16 @@
 <Application
-    RequestedThemeVariant="Default"
-    x:Class="SpotifyDataExplorer.App"
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  RequestedThemeVariant="Default"
+  x:Class="SpotifyDataExplorer.App"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:converters="clr-namespace:SpotifyDataExplorer.Converters"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+  <Application.Resources>
+    <converters:TimestampConverter x:Key="TimestampConverter" />
+    <converters:TimespanConverter x:Key="TimespanConverter" />
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
 </Application>

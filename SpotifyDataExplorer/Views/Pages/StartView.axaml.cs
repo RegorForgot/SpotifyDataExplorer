@@ -4,7 +4,7 @@ using Avalonia.Platform.Storage;
 using SpotifyDataExplorer.ViewModels.Pages;
 using FilePickerFileTypes = SpotifyDataExplorer.Utilities.FilePickerFileTypes;
 
-namespace SpotifyDataExplorer.Views;
+namespace SpotifyDataExplorer.Views.Pages;
 
 public partial class StartView : UserControl
 {

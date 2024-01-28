@@ -1,31 +1,34 @@
 <Window
-    Height="600"
-    Title="SpotifyDataExplorer"
-    Width="1000"
-    mc:Ignorable="d"
-    x:Class="SpotifyDataExplorer.Views.MainWindow"
-    x:DataType="vm:MainWindowViewModel"
-    xmlns="https://github.com/avaloniaui"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pageVM="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
-    xmlns:views="clr-namespace:SpotifyDataExplorer.Views"
-    xmlns:vm="using:SpotifyDataExplorer.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  Height="600"
+  Title="SpotifyDataExplorer"
+  Width="1000"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.MainWindow"
+  x:DataType="vm:MainWindowViewModel"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:pageVM="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
+  xmlns:pages="clr-namespace:SpotifyDataExplorer.Views.Pages"
+  xmlns:vm="using:SpotifyDataExplorer.ViewModels"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
 
-    <ContentControl Content="{Binding UIContext.CurrentViewModel}">
-        <ContentControl.DataTemplates>
-            <DataTemplate DataType="{x:Type pageVM:StartViewModel}">
-                <views:StartView DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type pageVM:PageViewModel}">
-                <views:PageView DataContext="{Binding}" />
-            </DataTemplate>
-        </ContentControl.DataTemplates>
-    </ContentControl>
+  <ContentControl Content="{Binding UIContext.CurrentViewModel}">
+    <ContentControl.DataTemplates>
+      <DataTemplate DataType="{x:Type pageVM:StartViewModel}">
+        <pages:StartView DataContext="{Binding}" />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type pageVM:HistoryPageViewModel}">
+        <pages:HistoryPageView DataContext="{Binding}" />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type pageVM:TrackPageViewModel}">
+        <pages:TrackPageView DataContext="{Binding}" />
+      </DataTemplate>
+    </ContentControl.DataTemplates>
+  </ContentControl>
 
 </Window>

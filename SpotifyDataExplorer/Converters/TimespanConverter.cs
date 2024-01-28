@@ -1,17 +1,17 @@
-using System;
+﻿using System;
 using System.Globalization;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 
 namespace SpotifyDataExplorer.Converters;
 
-public class TimestampConverter : IValueConverter
+public class TimespanConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is DateTime dateTime)
+        if (value is TimeSpan timespan)
         {
-            return $"{dateTime:yyyy MMM dd}, {dateTime:hh:mm tt} UTC";
+            return $@"{timespan:hh\:mm\:ss}";
         }
 
         return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);

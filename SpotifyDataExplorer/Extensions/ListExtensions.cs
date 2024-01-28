@@ -11,6 +11,6 @@ public static class ListExtensions
             return false;
         }
         
-        return pageNumber < chunks.Count;
+        return (chunks.Count - 1) > pageNumber ;
     }
 }

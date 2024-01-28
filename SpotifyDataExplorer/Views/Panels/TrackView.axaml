@@ -1,0 +1,82 @@
+﻿<UserControl
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.Panels.TrackView"
+  x:DataType="panels:TrackViewModel"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:panels="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Design.DataContext>
+    <panels:TrackViewModel />
+  </Design.DataContext>
+
+  <Grid RowDefinitions="*,Auto">
+    <ScrollViewer Grid.Row="0" Name="ItemControlScrollViewer">
+      <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Tracks}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border BorderBrush="White" BorderThickness="1">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition SharedSizeGroup="A" Width="300" />
+                  <ColumnDefinition />
+                  <ColumnDefinition SharedSizeGroup="A" />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                <Label Grid.Column="0">
+                  <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
+                </Label>
+                <Label
+                  Content="{Binding AlbumName}"
+                  Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+                <Label
+                  Content="{Binding Timestamp, Converter={StaticResource TimestampConverter}}"
+                  Grid.Column="2"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+                <Label
+                  Content="{Binding TimePlayed, Converter={StaticResource TimespanConverter}}"
+                  Grid.Column="3"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+
+    <Grid ColumnDefinitions="Auto, *, Auto" Grid.Row="1">
+      <Button
+        Click="Button_OnClick"
+        Command="{Binding PreviousPageCmd}"
+        Content="Previous Page"
+        Grid.Column="0"
+        Height="50"
+        HorizontalAlignment="Left"
+        IsEnabled="{Binding CanGoBack}"
+        VerticalContentAlignment="Center" />
+      <Label
+        Content="{Binding PageText}"
+        Grid.Column="1"
+        HorizontalAlignment="Center"
+        VerticalContentAlignment="Center" />
+      <Button
+        Click="Button_OnClick"
+        Command="{Binding NextPageCmd}"
+        Content="Next Page"
+        Grid.Column="2"
+        Height="50"
+        HorizontalAlignment="Right"
+        IsEnabled="{Binding CanGoNext}"
+        VerticalContentAlignment="Center" />
+    </Grid>
+  </Grid>
+</UserControl>

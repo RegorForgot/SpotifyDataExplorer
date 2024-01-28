@@ -1,18 +1,15 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 
-namespace SpotifyDataExplorer.Views;
+namespace SpotifyDataExplorer.Views.Panels;
 
-public partial class PageView : UserControl
+public partial class TrackView : UserControl
 {
-    public PageView()
+    public TrackView()
     {
         InitializeComponent();
     }
-
+    
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
         ItemControlScrollViewer?.ScrollToHome();
