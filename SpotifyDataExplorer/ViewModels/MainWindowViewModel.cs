@@ -5,10 +5,10 @@ namespace SpotifyDataExplorer.ViewModels;
 public class MainWindowViewModel : AbstractViewModel
 {
     public UIContext UIContext { get; }
-    
+
     public MainWindowViewModel(UIContext uiContext)
     {
         UIContext = uiContext;
-        UIContext.CurrentViewModel = new StartViewModel(UIContext);
+        UIContext.AddPage(new StartViewModel(UIContext));
     }
 }

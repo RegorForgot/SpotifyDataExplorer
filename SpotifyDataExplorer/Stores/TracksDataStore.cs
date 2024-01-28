@@ -19,17 +19,17 @@ public class TracksDataStore : ReactiveObject
     public IEnumerable<SpotifyTrack>? SpotifyTracks
     {
         get => _spotifyTracks;
-        set => this.RaiseAndSetIfChanged(ref _spotifyTracks, value);
+        private set => this.RaiseAndSetIfChanged(ref _spotifyTracks, value);
     }
 
     public Task PopulateSpotifyTrackListing(IEnumerable<SpotifyTrackDto>? trackDtos)
     {
-        SpotifyTracks = trackDtos?.Where(dto => dto.IsValid).Select(dto => new SpotifyTrack(dto));
+        SpotifyTracks = trackDtos?.Where(dto => dto.IsValid).Select(dto => new SpotifyTrack(dto)).OrderByDescending(track => track.Timestamp);
         return Task.CompletedTask;
     }
-    
+
     public async Task<IEnumerable<SpotifyTrackDto>?> GetDtosFromJson(IEnumerable<IStorageFile> jsonFiles)
-    {
+    { 
         JsonSerializer serializer = new JsonSerializer();
         var dtos = new List<SpotifyTrackDto>();
 

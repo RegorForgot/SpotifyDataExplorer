@@ -1,7 +1,7 @@
 <Window
+    Height="600"
     Title="SpotifyDataExplorer"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Width="1000"
     mc:Ignorable="d"
     x:Class="SpotifyDataExplorer.Views.MainWindow"
     x:DataType="vm:MainWindowViewModel"
