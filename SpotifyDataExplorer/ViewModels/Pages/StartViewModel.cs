@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reactive;
 using System.Threading.Tasks;
+using Avalonia.Controls.Primitives;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
 using SpotifyDataExplorer.Stores;
@@ -9,16 +10,15 @@ namespace SpotifyDataExplorer.ViewModels.Pages;
 
 public class StartViewModel : AbstractPageViewModel
 {
+    private readonly UIContext _uiContext;
     private readonly TracksDataStore _dataStore;
 
     public ReactiveCommand<IEnumerable<IStorageFile>, Unit> GetJsonFilesCmd { get; }
-    public ReactiveCommand<Unit, Unit> GetSqliteFileCmd { get; init; }
-
-    public StartViewModel(
-        TracksDataStore dataStore)
+    
+    public StartViewModel(UIContext uiContext)
     {
-        _dataStore = dataStore;
-
+        _uiContext = uiContext;
+        _dataStore = new TracksDataStore();
         GetJsonFilesCmd = ReactiveCommand.CreateFromTask<IEnumerable<IStorageFile>>(AddJsonTracksToStore);
     }
 
@@ -26,10 +26,7 @@ public class StartViewModel : AbstractPageViewModel
     {
         var dtos = await _dataStore.GetDtosFromJson(files);
         await _dataStore.PopulateSpotifyTrackListing(dtos);
-    }
 
-    private async Task AddSqliteTracksToStore(IStorageFile file)
-    {
-        file.
+        _uiContext.CurrentViewModel = new PageViewModel(_uiContext, _dataStore);
     }
 }

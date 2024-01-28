@@ -27,15 +27,7 @@ public class TracksDataStore : ReactiveObject
         SpotifyTracks = trackDtos?.Where(dto => dto.IsValid).Select(dto => new SpotifyTrack(dto));
         return Task.CompletedTask;
     }
-
-    public async Task PopulateSpotifyTrackListing(string liteDbPath)
-    {
-        LiteDatabase db = new LiteDatabase(liteDbPath);
-        var collection = db.GetCollection<SpotifyTrack>();
-        collection.InsertBulk(_spotifyTracks);
-        db.FileStorage.FindAll()
-    }
-
+    
     public async Task<IEnumerable<SpotifyTrackDto>?> GetDtosFromJson(IEnumerable<IStorageFile> jsonFiles)
     {
         JsonSerializer serializer = new JsonSerializer();
