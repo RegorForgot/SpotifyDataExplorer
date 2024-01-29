@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
 using SpotifyDataExplorer.Stores;
+using SpotifyDataExplorer.ViewModels.Panels;
 
 namespace SpotifyDataExplorer.ViewModels.Pages;
 
@@ -21,7 +22,7 @@ public class StartPageViewModel : AbstractPageViewModel
         set => this.RaiseAndSetIfChanged(ref _loading, value);
     }
 
-    public StartPageViewModel(UIContext uiContext) : base(uiContext)
+    public StartPageViewModel(UIContext context) : base(context)
     {
         _dataStore = new TracksDataStore();
         GetJsonFilesCmd = ReactiveCommand.CreateFromTask<UserControl>(AddJsonTracksToStore);
@@ -50,7 +51,8 @@ public class StartPageViewModel : AbstractPageViewModel
             var dtos = await _dataStore.GetDtosFromJson(files);
             await _dataStore.PopulateSpotifyTrackListing(dtos);
 
-            Context.AddPage(new HistoryPageViewModel(Context, _dataStore));
+            Context.AddPage(new HistoryViewModel(Context, _dataStore));
+            Context.CurrentWindow = new BasePageViewModel(Context);
         }
         catch (Exception ex)
         {

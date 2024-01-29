@@ -17,19 +17,13 @@
     <vm:MainWindowViewModel />
   </Design.DataContext>
 
-  <ContentControl Content="{Binding UIContext.CurrentViewModel}">
+  <ContentControl Content="{Binding Context.CurrentWindow}">
     <ContentControl.DataTemplates>
       <DataTemplate DataType="{x:Type pageVM:StartPageViewModel}">
         <pages:StartView DataContext="{Binding}" />
       </DataTemplate>
-      <DataTemplate DataType="{x:Type pageVM:HistoryPageViewModel}">
-        <pages:HistoryPageView DataContext="{Binding}" />
-      </DataTemplate>
-      <DataTemplate DataType="{x:Type pageVM:TrackPageViewModel}">
-        <pages:TrackPageView DataContext="{Binding}" />
-      </DataTemplate>
-      <DataTemplate DataType="{x:Type pageVM:AlbumPageViewModel}">
-        <pages:AlbumPageView DataContext="{Binding}" />
+      <DataTemplate DataType="{x:Type vm:AbstractViewModel}">
+        <pages:BasePageView DataContext="{Binding}" />
       </DataTemplate>
     </ContentControl.DataTemplates>
   </ContentControl>

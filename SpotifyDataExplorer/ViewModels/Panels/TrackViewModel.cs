@@ -4,7 +4,6 @@ using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Stores;
-using SpotifyDataExplorer.ViewModels.Pages;
 
 namespace SpotifyDataExplorer.ViewModels.Panels;
 
@@ -34,7 +33,7 @@ public class TrackViewModel : AbstractPaginatedViewModel
     
     private void OpenAlbum(SpotifyTrack track)
     {
-        Context.AddPage(new AlbumPageViewModel(Context, DataStore, track));
+        Context.AddPage(new AlbumViewModel(Context, DataStore, track));
     }
 
     protected sealed override void GoToPage(int number)

@@ -2,9 +2,9 @@
 
 namespace SpotifyDataExplorer.Views.Pages;
 
-public partial class TrackPageView : UserControl
+public partial class BasePageView : UserControl
 {
-    public TrackPageView()
+    public BasePageView()
     {
         InitializeComponent();
     }

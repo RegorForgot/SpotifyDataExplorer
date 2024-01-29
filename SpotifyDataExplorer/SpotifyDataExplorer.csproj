@@ -26,16 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\Pages\TrackPageView.axaml.cs">
-        <DependentUpon>TrackView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Views\Pages\StartView.axaml.cs">
         <DependentUpon>StartView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Views\Pages\HistoryPageView.axaml.cs">
-        <DependentUpon>ListeningHistoryView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

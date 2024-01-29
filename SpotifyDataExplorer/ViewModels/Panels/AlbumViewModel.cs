@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
 using ReactiveUI;
@@ -38,7 +37,7 @@ public class AlbumViewModel : AbstractPaginatedViewModel
 
     private void OpenTrack(SpotifyTrack track)
     {
-        Context.AddPage(new TrackPageViewModel(Context, DataStore, track));
+        Context.AddPage(new TrackViewModel(Context, DataStore, track));
     }
 
     public class AlbumTrackDto

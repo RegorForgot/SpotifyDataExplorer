@@ -7,6 +7,13 @@ namespace SpotifyDataExplorer.ViewModels;
 
 public class UIContext : ReactiveObject
 {
+    private AbstractViewModel _currentWindow;
+    public AbstractViewModel CurrentWindow
+    {
+        get => _currentWindow;
+        set => this.RaiseAndSetIfChanged(ref _currentWindow, value);
+    }
+
     private readonly List<AbstractPageViewModel> _pages = new List<AbstractPageViewModel>();
     public AbstractPageViewModel CurrentViewModel => _pages.Last();
     public bool CanGoBack => _pages.Count > 1;

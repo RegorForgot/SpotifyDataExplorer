@@ -1,0 +1,44 @@
+﻿<UserControl
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.Pages.BasePageView"
+  x:DataType="pages:BasePageViewModel"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:pages="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
+  xmlns:views="clr-namespace:SpotifyDataExplorer.Views.Panels"
+  xmlns:vms="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Design.DataContext>
+    <pages:BasePageViewModel />
+  </Design.DataContext>
+
+  <Grid RowDefinitions="Auto, Auto, *">
+    <Button
+      Command="{Binding LastScreenCmd}"
+      Content="Page Back"
+      Grid.Row="0"
+      Height="50"
+      HorizontalAlignment="Left"
+      IsEnabled="{Binding Context.CanGoBack}"
+      VerticalAlignment="Center"
+      VerticalContentAlignment="Center" />
+
+    <ContentControl Content="{Binding Context.CurrentViewModel}" Grid.Row="2">
+      <ContentControl.DataTemplates>
+        <DataTemplate DataType="{x:Type vms:AlbumViewModel}">
+          <views:AlbumView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:TrackViewModel}">
+          <views:TrackView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:HistoryViewModel}">
+          <views:HistoryView DataContext="{Binding}" />
+        </DataTemplate>
+      </ContentControl.DataTemplates>
+    </ContentControl>
+  </Grid>
+</UserControl>
