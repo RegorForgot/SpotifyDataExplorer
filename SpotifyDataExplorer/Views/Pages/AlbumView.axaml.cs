@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace SpotifyDataExplorer.Views.Panels;
+namespace SpotifyDataExplorer.Views.Pages;
 
 public partial class AlbumView : UserControl
 {

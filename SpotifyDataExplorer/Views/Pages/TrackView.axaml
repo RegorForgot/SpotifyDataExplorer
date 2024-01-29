@@ -2,8 +2,8 @@
   d:DesignHeight="450"
   d:DesignWidth="800"
   mc:Ignorable="d"
-  x:Class="SpotifyDataExplorer.Views.Panels.HistoryView"
-  x:DataType="panels:HistoryViewModel"
+  x:Class="SpotifyDataExplorer.Views.Pages.TrackView"
+  x:DataType="panels:TrackViewModel"
   xmlns="https://github.com/avaloniaui"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,7 +11,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Design.DataContext>
-    <panels:HistoryViewModel />
+    <panels:TrackViewModel />
   </Design.DataContext>
 
   <Grid RowDefinitions="*,Auto">
@@ -20,32 +20,21 @@
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <Border BorderBrush="White" BorderThickness="1">
-              <Grid RowDefinitions="Auto, Auto">
+              <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition SharedSizeGroup="A" Width="300" />
                   <ColumnDefinition />
                   <ColumnDefinition SharedSizeGroup="A" />
+                  <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
-                <Button
-                  Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
-                  CommandParameter="{Binding}"
-                  Grid.Column="0"
-                  Grid.Row="0"
-                  HorizontalAlignment="Left"
-                  HorizontalContentAlignment="Stretch"
-                  x:CompileBindings="False">
-                  <TextBlock Text="{Binding TrackName}" TextTrimming="WordEllipsis" />
-                </Button>
-                <Label Grid.Column="0" Grid.Row="1">
+                <Label Grid.Column="0">
                   <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
                 </Label>
                 <Button
                   Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
                   CommandParameter="{Binding}"
                   Grid.Column="1"
-                  Grid.Row="0"
-                  Grid.RowSpan="2"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   x:CompileBindings="False">
@@ -54,8 +43,11 @@
                 <Label
                   Content="{Binding Timestamp, Converter={StaticResource TimestampConverter}}"
                   Grid.Column="2"
-                  Grid.Row="0"
-                  Grid.RowSpan="2"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+                <Label
+                  Content="{Binding TimePlayed, Converter={StaticResource TimespanConverter}}"
+                  Grid.Column="3"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Center" />
               </Grid>

@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace SpotifyDataExplorer.Views.Panels;
+namespace SpotifyDataExplorer.Views.Pages;
 
-public partial class HistoryView : UserControl
+public partial class TrackView : UserControl
 {
-    public HistoryView()
+    public TrackView()
     {
         InitializeComponent();
     }

@@ -8,8 +8,8 @@
   xmlns="https://github.com/avaloniaui"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:pages="clr-namespace:SpotifyDataExplorer.Views.Pages"
   xmlns:screens="clr-namespace:SpotifyDataExplorer.ViewModels.Screens"
+  xmlns:screens1="clr-namespace:SpotifyDataExplorer.Views.Screens"
   xmlns:vm="using:SpotifyDataExplorer.ViewModels"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -20,10 +20,10 @@
   <ContentControl Content="{Binding Context.CurrentScreen}">
     <ContentControl.DataTemplates>
       <DataTemplate DataType="{x:Type screens:StartScreenViewModel}">
-        <pages:StartScreenView DataContext="{Binding}" />
+        <screens1:StartScreenView DataContext="{Binding}" />
       </DataTemplate>
       <DataTemplate DataType="{x:Type screens:NavigationScreenViewModel}">
-        <pages:NavigationScreenView DataContext="{Binding}" />
+        <screens1:NavigationScreenView DataContext="{Binding}" />
       </DataTemplate>
     </ContentControl.DataTemplates>
   </ContentControl>

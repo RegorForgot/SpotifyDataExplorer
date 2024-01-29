@@ -26,13 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\Pages\StartScreenView.axaml.cs">
-        <DependentUpon>StartView.axaml</DependentUpon>
-        <SubType>Code</SubType>
+      <Compile Update="Views\Screens\StartScreenView.axaml.cs">
+        <DependentUpon>StartScreenView.axaml</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Controls\PaginatedControl.axaml" />
     </ItemGroup>
 </Project>

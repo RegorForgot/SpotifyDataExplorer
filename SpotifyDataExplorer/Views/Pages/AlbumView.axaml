@@ -2,7 +2,7 @@
   d:DesignHeight="450"
   d:DesignWidth="800"
   mc:Ignorable="d"
-  x:Class="SpotifyDataExplorer.Views.Panels.AlbumView"
+  x:Class="SpotifyDataExplorer.Views.Pages.AlbumView"
   x:DataType="panels:AlbumViewModel"
   xmlns="https://github.com/avaloniaui"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

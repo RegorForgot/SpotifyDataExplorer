@@ -1,10 +1,14 @@
 ﻿<UserControl
-  x:Class="SpotifyDataExplorer.Views.Pages.StartScreenView"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.Screens.StartScreenView"
   x:DataType="screens:StartScreenViewModel"
   xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:viewModels="clr-namespace:SpotifyDataExplorer.ViewModels"
-  xmlns:screens="clr-namespace:SpotifyDataExplorer.ViewModels.Screens">
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:screens="clr-namespace:SpotifyDataExplorer.ViewModels.Screens"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Design.DataContext>
     <screens:StartScreenViewModel />
