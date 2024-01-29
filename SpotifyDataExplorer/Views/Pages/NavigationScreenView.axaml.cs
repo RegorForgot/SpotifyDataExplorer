@@ -2,9 +2,9 @@
 
 namespace SpotifyDataExplorer.Views.Pages;
 
-public partial class StartView : UserControl
+public partial class NavigationScreenView : UserControl
 {
-    public StartView()
+    public NavigationScreenView()
     {
         InitializeComponent();
     }

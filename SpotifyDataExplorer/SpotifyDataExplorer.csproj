@@ -26,7 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\Pages\StartView.axaml.cs">
+      <Compile Update="Views\Pages\StartScreenView.axaml.cs">
         <DependentUpon>StartView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>

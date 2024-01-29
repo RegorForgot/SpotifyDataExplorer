@@ -1,28 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ReactiveUI;
-using SpotifyDataExplorer.ViewModels;
 using SpotifyDataExplorer.ViewModels.Pages;
+using SpotifyDataExplorer.ViewModels.Screens;
 
 namespace SpotifyDataExplorer.Navigation;
 
 public class UIContext : ReactiveObject
 {
-    private AbstractViewModel _currentWindow;
+    private AbstractScreenViewModel _currentScreen;
     private readonly List<AbstractPageViewModel> _pages;
-    
+
     public AbstractPageViewModel CurrentViewModel => _pages.Last();
     public bool CanGoBack => _pages.Count > 1;
-    
-    public AbstractViewModel CurrentWindow
+
+    public AbstractScreenViewModel CurrentScreen
     {
-        get => _currentWindow;
-        set => this.RaiseAndSetIfChanged(ref _currentWindow, value);
+        get => _currentScreen;
+        set => this.RaiseAndSetIfChanged(ref _currentScreen, value);
     }
-    
+
     public UIContext()
     {
-        _currentWindow = new StartPageViewModel(this);
+        _currentScreen = new StartScreenViewModel(this);
         _pages = new List<AbstractPageViewModel>();
     }
 

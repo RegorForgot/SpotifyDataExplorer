@@ -2,17 +2,17 @@
 using ReactiveUI;
 using SpotifyDataExplorer.Navigation;
 
-namespace SpotifyDataExplorer.ViewModels.Pages;
+namespace SpotifyDataExplorer.ViewModels.Screens;
 
-public class BasePageViewModel : AbstractPageViewModel
+public class NavigationScreenViewModel : AbstractScreenViewModel
 {
     public ReactiveCommand<Unit, Unit> LastScreenCmd { get; }
-    
-    public BasePageViewModel(UIContext context) : base(context)
+
+    public NavigationScreenViewModel(UIContext context) : base(context)
     {
         LastScreenCmd = ReactiveCommand.Create(LastScreen);
     }
-    
+
     private void LastScreen()
     {
         Context.BackPage();
