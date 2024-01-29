@@ -3,8 +3,8 @@ using System.Linq;
 using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
+using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
-using SpotifyDataExplorer.ViewModels.Pages;
 
 namespace SpotifyDataExplorer.ViewModels.Panels;
 

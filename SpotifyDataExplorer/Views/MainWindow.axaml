@@ -19,7 +19,7 @@
 
   <ContentControl Content="{Binding Context.CurrentWindow}">
     <ContentControl.DataTemplates>
-      <DataTemplate DataType="{x:Type pageVM:StartPageViewModel}">
+      <DataTemplate DataType="{x:Type vm:StartPageViewModel}">
         <pages:StartView DataContext="{Binding}" />
       </DataTemplate>
       <DataTemplate DataType="{x:Type vm:AbstractViewModel}">

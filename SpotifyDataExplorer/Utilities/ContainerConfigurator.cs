@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.ViewModels;
 
 namespace SpotifyDataExplorer.Utilities;

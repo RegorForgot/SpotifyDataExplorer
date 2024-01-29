@@ -1,5 +1,6 @@
 ﻿using System.Reactive;
 using ReactiveUI;
+using SpotifyDataExplorer.Navigation;
 
 namespace SpotifyDataExplorer.ViewModels.Pages;
 

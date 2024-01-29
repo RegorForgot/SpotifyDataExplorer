@@ -1,16 +1,18 @@
 ﻿using System;
-using FilePickerFileTypes = SpotifyDataExplorer.Utilities.FilePickerFileTypes;
 using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
+using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
+using SpotifyDataExplorer.ViewModels.Pages;
 using SpotifyDataExplorer.ViewModels.Panels;
+using FilePickerFileTypes = SpotifyDataExplorer.Utilities.FilePickerFileTypes;
 
-namespace SpotifyDataExplorer.ViewModels.Pages;
+namespace SpotifyDataExplorer.ViewModels;
 
-public class StartPageViewModel : AbstractPageViewModel
+public class StartPageViewModel : AbstractViewModel
 {
     private readonly TracksDataStore _dataStore;
     private bool _loading;
@@ -58,6 +60,5 @@ public class StartPageViewModel : AbstractPageViewModel
         {
             Console.Write(ex.Message);
         }
-        Loading = false;
     }
 }

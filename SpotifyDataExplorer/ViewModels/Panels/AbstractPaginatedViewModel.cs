@@ -3,6 +3,7 @@ using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Extensions;
 using SpotifyDataExplorer.Models;
+using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
 using SpotifyDataExplorer.ViewModels.Pages;
 

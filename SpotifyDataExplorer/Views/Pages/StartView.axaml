@@ -1,12 +1,13 @@
 ﻿<UserControl
   x:Class="SpotifyDataExplorer.Views.Pages.StartView"
-  x:DataType="pages:StartPageViewModel"
+  x:DataType="viewModels:StartPageViewModel"
   xmlns="https://github.com/avaloniaui"
   xmlns:pages="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:viewModels="clr-namespace:SpotifyDataExplorer.ViewModels">
 
   <Design.DataContext>
-    <pages:StartPageViewModel />
+    <viewModels:StartPageViewModel />
   </Design.DataContext>
 
   <Grid RowDefinitions="*, Auto">
