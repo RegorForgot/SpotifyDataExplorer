@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
@@ -18,8 +17,6 @@ public class AlbumViewModel : AbstractPaginatedViewModel
         private set => this.RaiseAndSetIfChanged(ref _tracks, value);
     }
 
-    public ReactiveCommand<SpotifyTrack, Unit> OpenTrackCmd { get; }
-
     public AlbumViewModel(UIContext context, TracksDataStore dataStore, SpotifyTrack spotifyTrack) : base(context, dataStore)
     {
         Tracks = new ObservableCollection<AlbumTrackDto>(
@@ -31,13 +28,6 @@ public class AlbumViewModel : AbstractPaginatedViewModel
                 )
                 .OrderByDescending(dto => dto.Count)
         );
-
-        OpenTrackCmd = ReactiveCommand.Create<SpotifyTrack>(OpenTrack);
-    }
-
-    private void OpenTrack(SpotifyTrack track)
-    {
-        Context.AddPage(new TrackViewModel(Context, DataStore, track));
     }
 
     public class AlbumTrackDto

@@ -11,7 +11,6 @@ namespace SpotifyDataExplorer.ViewModels.Panels;
 
 public abstract class AbstractPaginatedViewModel : AbstractPageViewModel
 {
-    protected readonly TracksDataStore DataStore;
     protected List<SpotifyTrack[]> Pages;
     protected int CurrentPage;
 
@@ -29,9 +28,8 @@ public abstract class AbstractPaginatedViewModel : AbstractPageViewModel
     public ReactiveCommand<Unit, Unit> PreviousPageCmd { get; set; }
     public ReactiveCommand<Unit, Unit> NextPageCmd { get; }
 
-    protected AbstractPaginatedViewModel(UIContext context, TracksDataStore dataStore) : base(context)
+    protected AbstractPaginatedViewModel(UIContext context, TracksDataStore dataStore) : base(context, dataStore)
     {
-        DataStore = dataStore;
         NextPageCmd = ReactiveCommand.Create(NextPage);
         PreviousPageCmd = ReactiveCommand.Create(PreviousPage);
     }

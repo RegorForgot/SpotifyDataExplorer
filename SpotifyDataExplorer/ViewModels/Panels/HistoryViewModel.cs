@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
@@ -17,15 +16,9 @@ public sealed class HistoryViewModel : AbstractPaginatedViewModel
         get => _tracks;
         private set => this.RaiseAndSetIfChanged(ref _tracks, value);
     }
-
-    public ReactiveCommand<SpotifyTrack, Unit> OpenTrackCmd { get; }
-    public ReactiveCommand<SpotifyTrack, Unit> OpenAlbumCmd { get; }
-
-
+    
     public HistoryViewModel(UIContext context, TracksDataStore dataStore) : base(context, dataStore)
     {
-        OpenTrackCmd = ReactiveCommand.Create<SpotifyTrack>(OpenTrack);
-        OpenAlbumCmd = ReactiveCommand.Create<SpotifyTrack>(OpenAlbum);
 
         if (dataStore.SpotifyTracks != null)
         {
@@ -33,16 +26,6 @@ public sealed class HistoryViewModel : AbstractPaginatedViewModel
         }
 
         GoToPage(CurrentPage);
-    }
-
-    private void OpenTrack(SpotifyTrack track)
-    {
-        Context.AddPage(new TrackViewModel(Context, DataStore, track));
-    }
-    
-    private void OpenAlbum(SpotifyTrack track)
-    {
-        Context.AddPage(new AlbumViewModel(Context, DataStore, track));
     }
 
     protected override void GoToPage(int number)
