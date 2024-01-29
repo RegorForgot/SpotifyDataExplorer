@@ -47,4 +47,9 @@ public class UIContext : ReactiveObject
         this.RaisePropertyChanged(nameof(CanGoBack));
         this.RaisePropertyChanged(nameof(CurrentViewModel));
     }
+
+    public void RemoveAllPages()
+    {
+        _pages.Clear();
+    }
 }

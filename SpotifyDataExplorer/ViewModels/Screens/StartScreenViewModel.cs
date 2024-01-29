@@ -52,12 +52,17 @@ public class StartScreenViewModel : AbstractScreenViewModel
             var dtos = await _dataStore.GetDtosFromJson(files);
             await _dataStore.PopulateSpotifyTrackListing(dtos);
 
-            Context.AddPage(new HistoryViewModel(Context, _dataStore));
-            Context.CurrentScreen = new NavigationScreenViewModel(Context);
+            StartBrowsing();
         }
         catch (Exception ex)
         {
             Console.Write(ex.Message);
         }
+    }
+
+    private void StartBrowsing()
+    {
+        Context.AddPage(new HistoryViewModel(Context, _dataStore));
+        Context.CurrentScreen = new NavigationScreenViewModel(Context);
     }
 }

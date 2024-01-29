@@ -16,7 +16,7 @@
     <screens:NavigationScreenViewModel />
   </Design.DataContext>
 
-  <Grid RowDefinitions="Auto, Auto, *">
+  <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
     <Button
       Command="{Binding LastScreenCmd}"
       Content="Page Back"
@@ -27,7 +27,21 @@
       VerticalAlignment="Center"
       VerticalContentAlignment="Center" />
 
-    <ContentControl Content="{Binding Context.CurrentViewModel}" Grid.Row="2">
+    <Button
+      Command="{Binding BackToStartCmd}"
+      Content="Back To Start"
+      Grid.Column="1"
+      Grid.Row="0"
+      Height="50"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Center"
+      VerticalContentAlignment="Center" />
+
+    <ContentControl
+      Content="{Binding Context.CurrentViewModel}"
+      Grid.Column="0"
+      Grid.ColumnSpan="2"
+      Grid.Row="1">
       <ContentControl.DataTemplates>
         <DataTemplate DataType="{x:Type vms:AlbumViewModel}">
           <pages:AlbumView DataContext="{Binding}" />
