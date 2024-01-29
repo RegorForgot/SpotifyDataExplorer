@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using SpotifyDataExplorer.Models;
+﻿using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Stores;
 using SpotifyDataExplorer.ViewModels.Panels;
 
@@ -14,13 +13,6 @@ public class TrackPageViewModel : AbstractPageViewModel
     public TrackPageViewModel(UIContext context, TracksDataStore dataStore, SpotifyTrack spotifyTrack) : base(context)
     {
         TrackName = spotifyTrack.TrackName;
-
-        var trackPages =
-            dataStore.SpotifyTracks!
-                .Where(track => track.ArtistName == spotifyTrack.ArtistName && track.TrackName == spotifyTrack.TrackName)
-                .Chunk(20)
-                .ToList();
-
-        TrackViewModel = new TrackViewModel(context, dataStore, trackPages);
+        TrackViewModel = new TrackViewModel(context, dataStore, spotifyTrack);
     }
 }

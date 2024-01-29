@@ -40,13 +40,17 @@
                 <Label Grid.Column="0" Grid.Row="1">
                   <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
                 </Label>
-                <Label
-                  Content="{Binding AlbumName}"
+                <Button
+                  Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
+                  CommandParameter="{Binding}"
                   Grid.Column="1"
                   Grid.Row="0"
                   Grid.RowSpan="2"
                   HorizontalAlignment="Center"
-                  VerticalAlignment="Center" />
+                  VerticalAlignment="Center"
+                  x:CompileBindings="False">
+                  <Label Content="{Binding AlbumName}" />
+                </Button>
                 <Label
                   Content="{Binding Timestamp, Converter={StaticResource TimestampConverter}}"
                   Grid.Column="2"

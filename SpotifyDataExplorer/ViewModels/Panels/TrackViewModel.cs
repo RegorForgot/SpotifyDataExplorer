@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Stores;
+using SpotifyDataExplorer.ViewModels.Pages;
 
 namespace SpotifyDataExplorer.ViewModels.Panels;
 
@@ -15,12 +17,24 @@ public class TrackViewModel : AbstractPaginatedViewModel
         get => _tracks;
         private set => this.RaiseAndSetIfChanged(ref _tracks, value);
     }
-    
-    public TrackViewModel(UIContext context, TracksDataStore dataStore, List<SpotifyTrack[]> pages) : base(context, dataStore)
+
+    public ReactiveCommand<SpotifyTrack, Unit> OpenAlbumCmd { get; }
+
+    public TrackViewModel(UIContext context, TracksDataStore dataStore, SpotifyTrack spotifyTrack) : base(context, dataStore)
     {
-        Pages = pages;
+        OpenAlbumCmd = ReactiveCommand.Create<SpotifyTrack>(OpenAlbum);
+        
+        Pages = dataStore.SpotifyTracks!
+            .Where(track => track.ArtistName == spotifyTrack.ArtistName && track.TrackName == spotifyTrack.TrackName)
+            .Chunk(20)
+            .ToList();
 
         GoToPage(CurrentPage);
+    }
+    
+    private void OpenAlbum(SpotifyTrack track)
+    {
+        Context.AddPage(new AlbumPageViewModel(Context, DataStore, track));
     }
 
     protected sealed override void GoToPage(int number)

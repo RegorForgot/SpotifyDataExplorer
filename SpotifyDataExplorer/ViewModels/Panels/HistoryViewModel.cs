@@ -19,10 +19,13 @@ public sealed class HistoryViewModel : AbstractPaginatedViewModel
     }
 
     public ReactiveCommand<SpotifyTrack, Unit> OpenTrackCmd { get; }
+    public ReactiveCommand<SpotifyTrack, Unit> OpenAlbumCmd { get; }
+
 
     public HistoryViewModel(UIContext context, TracksDataStore dataStore) : base(context, dataStore)
     {
         OpenTrackCmd = ReactiveCommand.Create<SpotifyTrack>(OpenTrack);
+        OpenAlbumCmd = ReactiveCommand.Create<SpotifyTrack>(OpenAlbum);
 
         if (dataStore.SpotifyTracks != null)
         {
@@ -35,6 +38,11 @@ public sealed class HistoryViewModel : AbstractPaginatedViewModel
     private void OpenTrack(SpotifyTrack track)
     {
         Context.AddPage(new TrackPageViewModel(Context, DataStore, track));
+    }
+    
+    private void OpenAlbum(SpotifyTrack track)
+    {
+        Context.AddPage(new AlbumPageViewModel(Context, DataStore, track));
     }
 
     protected override void GoToPage(int number)
