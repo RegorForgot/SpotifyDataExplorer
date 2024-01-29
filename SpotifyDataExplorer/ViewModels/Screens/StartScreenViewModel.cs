@@ -6,7 +6,7 @@ using Avalonia.Platform.Storage;
 using ReactiveUI;
 using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
-using SpotifyDataExplorer.ViewModels.Panels;
+using SpotifyDataExplorer.ViewModels.Pages;
 using FilePickerFileTypes = SpotifyDataExplorer.Utilities.FilePickerFileTypes;
 
 namespace SpotifyDataExplorer.ViewModels.Screens;

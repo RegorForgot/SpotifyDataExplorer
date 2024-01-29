@@ -1,7 +1,7 @@
 ﻿using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
-using SpotifyDataExplorer.ViewModels.Panels;
+using SpotifyDataExplorer.ViewModels.Pages;
 
 namespace SpotifyDataExplorer.Extensions;
 

@@ -9,7 +9,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:pages="clr-namespace:SpotifyDataExplorer.Views.Pages"
   xmlns:screens="clr-namespace:SpotifyDataExplorer.ViewModels.Screens"
-  xmlns:vms="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
+  xmlns:vms="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Design.DataContext>

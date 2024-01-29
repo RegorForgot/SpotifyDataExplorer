@@ -6,9 +6,8 @@ using SpotifyDataExplorer.Extensions;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
-using SpotifyDataExplorer.ViewModels.Pages;
 
-namespace SpotifyDataExplorer.ViewModels.Panels;
+namespace SpotifyDataExplorer.ViewModels.Pages;
 
 public abstract class AbstractPaginatedViewModel<T> : AbstractPageViewModel where T : IViewModelDto
 {

@@ -3,16 +3,16 @@
   d:DesignWidth="800"
   mc:Ignorable="d"
   x:Class="SpotifyDataExplorer.Views.Pages.TrackView"
-  x:DataType="panels:TrackViewModel"
+  x:DataType="pages:TrackViewModel"
   xmlns="https://github.com/avaloniaui"
   xmlns:controls="clr-namespace:SpotifyDataExplorer.Views.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:panels="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
+  xmlns:pages="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Design.DataContext>
-    <panels:TrackViewModel />
+    <pages:TrackViewModel />
   </Design.DataContext>
 
   <Grid RowDefinitions="*,Auto">

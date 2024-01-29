@@ -3,7 +3,7 @@ using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
 
-namespace SpotifyDataExplorer.ViewModels.Panels;
+namespace SpotifyDataExplorer.ViewModels.Pages;
 
 public sealed class AlbumViewModel : AbstractPaginatedViewModel<AlbumViewModel.AlbumTrackDto>
 {
