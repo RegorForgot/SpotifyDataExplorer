@@ -5,6 +5,7 @@
   x:Class="SpotifyDataExplorer.Views.Pages.AlbumView"
   x:DataType="panels:AlbumViewModel"
   xmlns="https://github.com/avaloniaui"
+  xmlns:controls="clr-namespace:SpotifyDataExplorer.Views.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:panels="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
@@ -14,31 +15,35 @@
     <panels:AlbumViewModel />
   </Design.DataContext>
 
-  <ScrollViewer Name="ItemControlScrollViewer">
-    <ItemsControl ItemsSource="{Binding Tracks}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <Border BorderBrush="White" BorderThickness="1">
-            <Grid ColumnDefinitions="*,*">
-              <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
-              <Button
-                Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
-                CommandParameter="{Binding Track}"
-                Grid.Column="0"
-                HorizontalAlignment="Left"
-                HorizontalContentAlignment="Stretch"
-                x:CompileBindings="False">
-                <TextBlock Text="{Binding Track.TrackName}" TextTrimming="WordEllipsis" />
-              </Button>
-              <Label
-                Content="{Binding Count}"
-                Grid.Column="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
-            </Grid>
-          </Border>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
-  </ScrollViewer>
+  <Grid RowDefinitions="*,Auto">
+    <ScrollViewer Name="ItemControlScrollViewer">
+      <ItemsControl ItemsSource="{Binding CurrentPage}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border BorderBrush="White" BorderThickness="1">
+              <Grid ColumnDefinitions="*,*">
+                <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                <Button
+                  Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
+                  CommandParameter="{Binding Track}"
+                  Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Stretch"
+                  x:CompileBindings="False">
+                  <TextBlock Text="{Binding Track.TrackName}" TextTrimming="WordEllipsis" />
+                </Button>
+                <Label
+                  Content="{Binding Count}"
+                  Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+
+    <controls:PageButtonControl DataContext="{Binding}" Grid.Row="1" />
+  </Grid>
 </UserControl>

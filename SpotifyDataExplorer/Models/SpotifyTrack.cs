@@ -4,7 +4,7 @@ using SpotifyDataExplorer.Extensions;
 
 namespace SpotifyDataExplorer.Models;
 
-public record SpotifyTrack
+public record SpotifyTrack : IViewModelDto
 {
     public SpotifyTrack(SpotifyTrackDto spotifyTrackDto)
     {

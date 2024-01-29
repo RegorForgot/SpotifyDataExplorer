@@ -5,6 +5,7 @@
   x:Class="SpotifyDataExplorer.Views.Pages.TrackView"
   x:DataType="panels:TrackViewModel"
   xmlns="https://github.com/avaloniaui"
+  xmlns:controls="clr-namespace:SpotifyDataExplorer.Views.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:panels="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
@@ -16,7 +17,7 @@
 
   <Grid RowDefinitions="*,Auto">
     <ScrollViewer Grid.Row="0" Name="ItemControlScrollViewer">
-      <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Tracks}">
+      <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding CurrentPage}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <Border BorderBrush="White" BorderThickness="1">
@@ -57,30 +58,6 @@
       </ItemsControl>
     </ScrollViewer>
 
-    <Grid ColumnDefinitions="Auto, *, Auto" Grid.Row="1">
-      <Button
-        Click="Button_OnClick"
-        Command="{Binding PreviousPageCmd}"
-        Content="Previous Page"
-        Grid.Column="0"
-        Height="50"
-        HorizontalAlignment="Left"
-        IsEnabled="{Binding CanGoBack}"
-        VerticalContentAlignment="Center" />
-      <Label
-        Content="{Binding PageText}"
-        Grid.Column="1"
-        HorizontalAlignment="Center"
-        VerticalContentAlignment="Center" />
-      <Button
-        Click="Button_OnClick"
-        Command="{Binding NextPageCmd}"
-        Content="Next Page"
-        Grid.Column="2"
-        Height="50"
-        HorizontalAlignment="Right"
-        IsEnabled="{Binding CanGoNext}"
-        VerticalContentAlignment="Center" />
-    </Grid>
+    <controls:PageButtonControl DataContext="{Binding}" Grid.Row="1" />
   </Grid>
 </UserControl>

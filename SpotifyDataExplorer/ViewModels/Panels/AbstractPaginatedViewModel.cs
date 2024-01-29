@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reactive;
 using ReactiveUI;
 using SpotifyDataExplorer.Extensions;
@@ -9,12 +10,19 @@ using SpotifyDataExplorer.ViewModels.Pages;
 
 namespace SpotifyDataExplorer.ViewModels.Panels;
 
-public abstract class AbstractPaginatedViewModel : AbstractPageViewModel
+public abstract class AbstractPaginatedViewModel<T> : AbstractPageViewModel where T : IViewModelDto
 {
-    protected List<SpotifyTrack[]> Pages;
-    protected int CurrentPage;
+    protected List<T[]> Pages;
+    protected int CurrentPageNum;
 
     private string _pageText;
+    private ObservableCollection<T> _currentPage;
+
+    public ObservableCollection<T> CurrentPage
+    {
+        get => _currentPage;
+        protected set => this.RaiseAndSetIfChanged(ref _currentPage, value);
+    }
 
     public string PageText
     {
@@ -22,9 +30,8 @@ public abstract class AbstractPaginatedViewModel : AbstractPageViewModel
         private set => this.RaiseAndSetIfChanged(ref _pageText, value);
     }
 
-    public bool CanGoBack => CurrentPage > 0;
-    public bool CanGoNext => Pages.HasNextPage(CurrentPage);
-
+    public bool CanGoBack => CurrentPageNum > 0;
+    public bool CanGoNext => Pages.HasNextPage(CurrentPageNum);
     public ReactiveCommand<Unit, Unit> PreviousPageCmd { get; set; }
     public ReactiveCommand<Unit, Unit> NextPageCmd { get; }
 
@@ -36,18 +43,19 @@ public abstract class AbstractPaginatedViewModel : AbstractPageViewModel
 
     private void NextPage()
     {
-        GoToPage(++CurrentPage);
+        GoToPage(++CurrentPageNum);
     }
 
     private void PreviousPage()
     {
-        GoToPage(--CurrentPage);
+        GoToPage(--CurrentPageNum);
     }
 
-    protected virtual void GoToPage(int number)
+    protected void GoToPage(int number)
     {
+        CurrentPage = new ObservableCollection<T>(Pages[CurrentPageNum]);
         this.RaisePropertyChanged(nameof(CanGoBack));
         this.RaisePropertyChanged(nameof(CanGoNext));
-        PageText = $"Page {CurrentPage + 1} of {Pages.Count}";
+        PageText = $"Page {number + 1} of {Pages.Count}";
     }
 }

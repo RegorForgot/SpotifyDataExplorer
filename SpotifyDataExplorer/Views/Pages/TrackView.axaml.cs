@@ -9,9 +9,4 @@ public partial class TrackView : UserControl
     {
         InitializeComponent();
     }
-    
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        ItemControlScrollViewer?.ScrollToHome();
-    }
 }

@@ -1,0 +1,41 @@
+﻿<UserControl
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.Controls.PageButtonControl"
+  x:CompileBindings="False"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:SpotifyDataExplorer.Models"
+  xmlns:panels="clr-namespace:SpotifyDataExplorer.ViewModels.Panels"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Design.DataContext>
+    <panels:AbstractPaginatedViewModel x:TypeArguments="models:IViewModelDto" />
+  </Design.DataContext>
+
+  <Grid ColumnDefinitions="Auto, *, Auto">
+    <Button
+      Command="{Binding PreviousPageCmd}"
+      Content="Previous Page"
+      Grid.Column="0"
+      Height="50"
+      HorizontalAlignment="Left"
+      IsEnabled="{Binding CanGoBack}"
+      VerticalContentAlignment="Center" />
+    <Label
+      Content="{Binding PageText}"
+      Grid.Column="1"
+      HorizontalAlignment="Center"
+      VerticalContentAlignment="Center" />
+    <Button
+      Command="{Binding NextPageCmd}"
+      Content="Next Page"
+      Grid.Column="2"
+      Height="50"
+      HorizontalAlignment="Right"
+      IsEnabled="{Binding CanGoNext}"
+      VerticalContentAlignment="Center" />
+  </Grid>
+</UserControl>
