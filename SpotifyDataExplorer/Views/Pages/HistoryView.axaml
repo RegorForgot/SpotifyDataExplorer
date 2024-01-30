@@ -20,16 +20,20 @@
       <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding CurrentPage}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
-            <Border BorderBrush="White" BorderThickness="1">
+            <Border
+              Background="#60606060"
+              CornerRadius="3"
+              Margin="6"
+              Padding="3">
+
               <Grid RowDefinitions="Auto, Auto">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition SharedSizeGroup="A" Width="300" />
                   <ColumnDefinition />
                   <ColumnDefinition SharedSizeGroup="A" />
                 </Grid.ColumnDefinitions>
-                <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
                 <Button
-                  Classes="InlineHyperlink"
+                  Classes="InlineHyperlink TitleButton"
                   Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
                   CommandParameter="{Binding}"
                   Content="{Binding TrackName}"
@@ -38,20 +42,27 @@
                   HorizontalAlignment="Left"
                   HorizontalContentAlignment="Stretch"
                   x:CompileBindings="False" />
-                <Label Grid.Column="0" Grid.Row="1">
-                  <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
-                </Label>
                 <Button
+                  Classes="InlineHyperlink"
+                  Command="{Binding $parent[UserControl].DataContext.OpenArtistCmd}"
+                  CommandParameter="{Binding}"
+                  Content="{Binding ArtistName}"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Stretch"
+                  x:CompileBindings="False" />
+                <Button
+                  Classes="InlineHyperlink"
                   Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
                   CommandParameter="{Binding}"
+                  Content="{Binding AlbumName}"
                   Grid.Column="1"
                   Grid.Row="0"
                   Grid.RowSpan="2"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
-                  x:CompileBindings="False">
-                  <Label Content="{Binding AlbumName}" />
-                </Button>
+                  x:CompileBindings="False" />
                 <Label
                   Content="{Binding Timestamp, Converter={StaticResource TimestampConverter}}"
                   Grid.Column="2"

@@ -12,22 +12,35 @@
 
   <Application.Styles>
     <FluentTheme />
+    <Style Selector="Button.TitleButton">
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
     <Style Selector="Button.InlineHyperlink">
       <Setter Property="Background" Value="Transparent" />
       <Setter Property="Cursor" Value="Hand" />
-      <Setter Property="Margin" Value="0" />
+      <Setter Property="Margin" Value="0 3 0 3" />
       <Setter Property="Padding" Value="0" />
       <Setter Property="Template">
         <ControlTemplate>
-          <TextBlock
-            Text="{TemplateBinding Content}"
-            TextDecorations="Underline"
-            TextTrimming="WordEllipsis" />
+          <Label
+            FontFamily="{TemplateBinding FontFamily}"
+            FontSize="{TemplateBinding FontSize}"
+            FontWeight="{TemplateBinding FontWeight}">
+            <TextBlock
+              Classes="InlineHyperlinkTextBlock"
+              Text="{TemplateBinding Content}"
+              TextTrimming="WordEllipsis" />
+          </Label>
         </ControlTemplate>
       </Setter>
     </Style>
     <Style Selector="Button.InlineHyperlink:pressed">
       <Setter Property="Foreground" Value="MediumPurple" />
+    </Style>
+
+    <Style Selector="TextBlock.InlineHyperlinkTextBlock:pointerover">
+      <Setter Property="TextDecorations" Value="Underline" />
     </Style>
   </Application.Styles>
 </Application>

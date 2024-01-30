@@ -16,23 +16,61 @@
 
   <ScrollViewer Name="ItemControlScrollViewer">
     <StackPanel>
-      <Label Content="Albums" />
+      <Label
+        Content="{Binding ArtistName}"
+        FontSize="24"
+        FontWeight="Bold" />
+
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <StackPanel>
+          <Label
+            Content="Plays"
+            FontSize="20"
+            FontWeight="Bold" />
+          <Label Content="{Binding PlayCount}" FontSize="20" />
+        </StackPanel>
+        <StackPanel>
+          <Label
+            Content="Albums"
+            FontSize="20"
+            FontWeight="Bold" />
+          <Label Content="{Binding AlbumCount}" FontSize="20" />
+        </StackPanel>
+        <StackPanel>
+          <Label
+            Content="Tracks"
+            FontSize="20"
+            FontWeight="Bold" />
+          <Label Content="{Binding TrackCount}" FontSize="20" />
+        </StackPanel>
+      </StackPanel>
+
+      <Label
+        Content="Albums"
+        FontSize="20"
+        FontWeight="Bold"
+        Margin="0,20,0,0" />
       <ItemsControl ItemsSource="{Binding Albums}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
-            <Border BorderBrush="White" BorderThickness="1">
+            <Border
+              Background="#60606060"
+              CornerRadius="3"
+              Margin="6"
+              Padding="3">
               <Grid ColumnDefinitions="*,*">
                 <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
                 <Button
+                  Classes="InlineHyperlink TitleButton"
                   Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
                   CommandParameter="{Binding Track}"
+                  Content="{Binding Track.AlbumName}"
                   Grid.Column="0"
                   HorizontalAlignment="Left"
                   HorizontalContentAlignment="Stretch"
-                  x:CompileBindings="False">
-                  <TextBlock Text="{Binding Track.AlbumName}" TextTrimming="WordEllipsis" />
-                </Button>
+                  x:CompileBindings="False" />
                 <Label
+                  Classes="InlineHyperlink TitleButton"
                   Content="{Binding Count}"
                   Grid.Column="1"
                   HorizontalAlignment="Center"
@@ -43,22 +81,30 @@
         </ItemsControl.ItemTemplate>
       </ItemsControl>
 
-      <Label Content="Tracks" />
+      <Label
+        Content="Tracks"
+        FontSize="20"
+        FontWeight="Bold"
+        Margin="0,20,0,0" />
       <ItemsControl ItemsSource="{Binding Tracks}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
-            <Border BorderBrush="White" BorderThickness="1">
+            <Border
+              Background="#60606060"
+              CornerRadius="3"
+              Margin="6"
+              Padding="3">
               <Grid ColumnDefinitions="*,*">
                 <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
                 <Button
-                  Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
+                  Classes="InlineHyperlink TitleButton"
+                  Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
                   CommandParameter="{Binding Track}"
+                  Content="{Binding Track.TrackName}"
                   Grid.Column="0"
                   HorizontalAlignment="Left"
                   HorizontalContentAlignment="Stretch"
-                  x:CompileBindings="False">
-                  <TextBlock Text="{Binding Track.TrackName}" TextTrimming="WordEllipsis" />
-                </Button>
+                  x:CompileBindings="False" />
                 <Label
                   Content="{Binding Count}"
                   Grid.Column="1"
