@@ -16,11 +16,8 @@ public class ArtistViewModel : AbstractPageViewModel
     public int AlbumCount { get; }
     public int TrackCount { get; }
 
-    public ObservableCollection<AlbumDto> Albums { get; }
-    private List<AlbumDto> FullAlbums { get; }
-
-    public ObservableCollection<TrackDto> Tracks { get; }
-    private List<TrackDto> FullTracks { get; }
+    public IEnumerable<AlbumDto> Albums { get; }
+    public IEnumerable<TrackDto> Tracks { get; }
 
     public ArtistViewModel(UIContext context, TracksDataStore dataStore, SpotifyTrack track) : base(context, dataStore)
     {
@@ -28,23 +25,25 @@ public class ArtistViewModel : AbstractPageViewModel
             .AsQueryable()
             .Where(spotifyTrack => spotifyTrack.ArtistName == track.ArtistName);
 
-        FullAlbums = artistPlays
-            .GroupBy(spotifyTrack => spotifyTrack.AlbumName)
+        var albums = artistPlays
+            .GroupBy(spotifyTrack => spotifyTrack.AlbumName);
+
+        Albums = albums
             .Select(tracks => new AlbumDto(tracks.First(), tracks.Count()))
             .OrderByDescending(dto => dto.Count)
-            .ToList();
-        Albums = new ObservableCollection<AlbumDto>(FullAlbums.Take(10));
+            .Take(10);
 
-        FullTracks = artistPlays
-            .GroupBy(spotifyTrack => spotifyTrack.TrackName)
-            .Select(tracks => new TrackDto(tracks.First(), tracks.Count()))
+        var tracks = artistPlays
+            .GroupBy(spotifyTrack => spotifyTrack.TrackName);
+
+        Tracks = tracks
+            .Select(spotifyTrack => new TrackDto(spotifyTrack.First(), spotifyTrack.Count()))
             .OrderByDescending(dto => dto.Count)
-            .ToList();
-        Tracks = new ObservableCollection<TrackDto>(FullTracks.Take(10));
+            .Take(10);
 
         ArtistName = track.ArtistName;
-        AlbumCount = FullAlbums.Count;
-        TrackCount = FullTracks.Count;
+        AlbumCount = albums.Count();
+        TrackCount = tracks.Count();
         PlayCount = artistPlays.Count();
     }
 }
