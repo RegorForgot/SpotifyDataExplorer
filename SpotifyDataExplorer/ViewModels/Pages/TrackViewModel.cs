@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using Avalonia.Controls.Documents;
 using SpotifyDataExplorer.Models;
 using SpotifyDataExplorer.Navigation;
 using SpotifyDataExplorer.Stores;
+using SpotifyDataExplorer.Views.Controls;
 
 namespace SpotifyDataExplorer.ViewModels.Pages;
 

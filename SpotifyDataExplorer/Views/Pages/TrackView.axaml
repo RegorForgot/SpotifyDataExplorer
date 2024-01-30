@@ -33,13 +33,18 @@
                   <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
                 </Label>
                 <Button
+                  Background="Transparent"
                   Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
                   CommandParameter="{Binding}"
                   Grid.Column="1"
                   HorizontalAlignment="Center"
+                  Margin="0"
+                  Padding="0"
                   VerticalAlignment="Center"
                   x:CompileBindings="False">
-                  <Label Content="{Binding AlbumName}" />
+                  <Label>
+                    <TextBlock Text="{Binding AlbumName}" TextDecorations="Underline" />
+                  </Label>
                 </Button>
                 <Label
                   Content="{Binding Timestamp, Converter={StaticResource TimestampConverter}}"

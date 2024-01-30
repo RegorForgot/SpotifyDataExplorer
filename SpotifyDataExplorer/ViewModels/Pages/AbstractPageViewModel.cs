@@ -9,14 +9,14 @@ namespace SpotifyDataExplorer.ViewModels.Pages;
 
 public abstract class AbstractPageViewModel : AbstractViewModel
 {
-    protected readonly TracksDataStore DataStore;
     public ReactiveCommand<SpotifyTrack, Unit> OpenTrackCmd { get; }
     public ReactiveCommand<SpotifyTrack, Unit> OpenAlbumCmd { get; }
+    public ReactiveCommand<SpotifyTrack, Unit> OpenArtistCmd { get; }
 
     protected AbstractPageViewModel(UIContext context, TracksDataStore dataStore) : base(context)
     {
-        DataStore = dataStore;
         OpenTrackCmd = ReactiveCommand.Create<SpotifyTrack>(track => context.OpenTrack(dataStore, track));
         OpenAlbumCmd = ReactiveCommand.Create<SpotifyTrack>(track => context.OpenAlbum(dataStore, track));
+        OpenArtistCmd = ReactiveCommand.Create<SpotifyTrack>(track => context.OpenArtist(dataStore, track));
     }
 }

@@ -16,4 +16,9 @@ public static class UIContextExtensions
     {
         context.AddPage(new TrackViewModel(context, dataStore, track));
     }
+
+    public static void OpenArtist(this UIContext context, TracksDataStore dataStore, SpotifyTrack trackOfArtist)
+    {
+        context.AddPage(new ArtistViewModel(context, dataStore, trackOfArtist));
+    }
 }

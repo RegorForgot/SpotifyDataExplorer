@@ -1,0 +1,74 @@
+﻿<UserControl
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d"
+  x:Class="SpotifyDataExplorer.Views.Pages.ArtistView"
+  x:DataType="pages:ArtistViewModel"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:pages="clr-namespace:SpotifyDataExplorer.ViewModels.Pages"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Design.DataContext>
+    <pages:ArtistViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer Name="ItemControlScrollViewer">
+    <StackPanel>
+      <Label Content="Albums" />
+      <ItemsControl ItemsSource="{Binding Albums}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border BorderBrush="White" BorderThickness="1">
+              <Grid ColumnDefinitions="*,*">
+                <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                <Button
+                  Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
+                  CommandParameter="{Binding Track}"
+                  Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Stretch"
+                  x:CompileBindings="False">
+                  <TextBlock Text="{Binding Track.AlbumName}" TextTrimming="WordEllipsis" />
+                </Button>
+                <Label
+                  Content="{Binding Count}"
+                  Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <Label Content="Tracks" />
+      <ItemsControl ItemsSource="{Binding Tracks}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border BorderBrush="White" BorderThickness="1">
+              <Grid ColumnDefinitions="*,*">
+                <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                <Button
+                  Command="{Binding $parent[UserControl].DataContext.OpenAlbumCmd}"
+                  CommandParameter="{Binding Track}"
+                  Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Stretch"
+                  x:CompileBindings="False">
+                  <TextBlock Text="{Binding Track.TrackName}" TextTrimming="WordEllipsis" />
+                </Button>
+                <Label
+                  Content="{Binding Count}"
+                  Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

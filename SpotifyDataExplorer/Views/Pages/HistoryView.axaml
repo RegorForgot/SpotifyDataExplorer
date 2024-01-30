@@ -29,15 +29,15 @@
                 </Grid.ColumnDefinitions>
                 <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
                 <Button
+                  Classes="InlineHyperlink"
                   Command="{Binding $parent[UserControl].DataContext.OpenTrackCmd}"
                   CommandParameter="{Binding}"
+                  Content="{Binding TrackName}"
                   Grid.Column="0"
                   Grid.Row="0"
                   HorizontalAlignment="Left"
                   HorizontalContentAlignment="Stretch"
-                  x:CompileBindings="False">
-                  <TextBlock Text="{Binding TrackName}" TextTrimming="WordEllipsis" />
-                </Button>
+                  x:CompileBindings="False" />
                 <Label Grid.Column="0" Grid.Row="1">
                   <TextBlock Text="{Binding ArtistName}" TextTrimming="WordEllipsis" />
                 </Label>
